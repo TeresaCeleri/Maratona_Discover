@@ -1,16 +1,20 @@
-//express é uma biblioteca para criar o servidor 
-const express = require("express")
-const server = express()
-const routes = require("./routes")
+// express é uma biblioteca para criar o servidor
+const express = require('express');
 
-//vai usar o motor do ejs, ou seja, renderizar
-//usando template engine
-server.set("view engine", 'ejs')
+const server = express();
+const routes = require('./routes');
 
-//habilitar arquivos estaticos
-server.use(express.static("public"))
+// vai usar o motor do ejs, ou seja, renderizar
+// usando template engine
+server.set('view engine', 'ejs');
 
-//routes
-server.use(routes)
+// habilitar arquivos estaticos
+server.use(express.static('public'));
 
-server.listen(3005, () => console.log('rodando'))
+// liberando para usar usar req.body
+server.use(express.urlencoded({ extended: true }));
+
+// routes
+server.use(routes);
+
+server.listen(3005, () => console.log('rodando'));
